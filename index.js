@@ -3,7 +3,7 @@ const app = express()
 const port = process.env.PORT || 4040;
 const cors = require('cors')
 const Nightmare = require('nightmare');
-const nightmare = Nightmare({ show: true });
+
 const expressValidator = require('express-validator')
 
 
@@ -11,6 +11,7 @@ const expressValidator = require('express-validator')
 app.use(cors())
 
 app.get('/getstats/:url', (req, res) => {
+  const nightmare = Nightmare({ show: false });
   nightmare
     .goto(`http://${req.params.url}`)
     .evaluate( () => {
